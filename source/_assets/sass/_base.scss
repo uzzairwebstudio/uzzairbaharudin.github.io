@@ -32,10 +32,11 @@ body {
 a {
   @apply .font-semibold;
   @apply .no-underline;
-  @apply .text-blue-600;
+  @apply .text-white;
 
   &:hover {
-    @apply .text-blue-800;
+    @apply .text-theme-primary;
+    @include neon-glow;
   }
 }
 
@@ -59,8 +60,8 @@ code {
 }
 
 code.hljs {
-  @apply .bg-transparent;
-  @apply .p-0;
+  @apply .bg-dark-600;
+  @apply .p-2;
 
   .hljs-comment,
   .hljs-keyword,
@@ -89,15 +90,18 @@ h6 {
 h1 {
   @apply .font-extrabold;
   @apply .text-5xl;
+}
+
+.post-title {
   @include neon-glow;
+  
   animation: flicker 3s linear forwards alternate infinite;
+  
+  &:nth-child(even) {
+    animation-delay: 0.3s !important;
+    animation-direction: alternate-reverse !important;
+  }
 }
-
-h1:nth-child(even) {
-  animation-delay: 0.3s;
-  animation-direction: alternate-reverse;
-}
-
 h2 {
   @apply .font-bold;
   @apply .text-4xl;
@@ -159,11 +163,11 @@ p {
 }
 
 pre {
-  @apply .bg-gray-200;
+  @apply .bg-dark-400;
   @apply .leading-loose;
   @apply .my-6;
   @apply .overflow-x-auto;
-  @apply .p-4;
+  @apply .p-2;
   @apply .rounded;
   @apply .shadow;
   @apply .text-base;
@@ -171,7 +175,7 @@ pre {
   code {
     @apply .bg-transparent;
     @apply .block;
-    @apply .p-0;
+    @apply .p-2;
   }
 }
 

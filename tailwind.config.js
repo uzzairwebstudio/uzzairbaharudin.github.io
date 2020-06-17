@@ -20,6 +20,7 @@ module.exports = {
           'tertiary':'#ed667b'
         },
         dark: {
+          '600': '#011b26',
           '500': '#001e2f',
           '400': '#143044',
           '300': '#576975',
@@ -50,7 +51,7 @@ module.exports = {
       '3xl': '1.75rem',
       '4xl': '2.125rem',
       '5xl': '2.625rem',
-      '6xl': '10rem',
+      '6xl': '5rem',
     },
   },
   variants: {
