@@ -12,9 +12,9 @@
 <img src="{{ $page->cover_image }}" alt="{{ $page->title }} cover image" class="mb-2">
 @endif
 
-<h1 class="leading-none mb-2 post-title md:text-6xl text-center">{{ $page->title }}</h1>
+<h1 class="leading-none mb-2 post-title md:text-6xl text-center text-white">{{ $page->title }}</h1>
 
-<p class="text-gray-600 text-xl md:mt-0 text-center">{{ date('F j, Y', $page->date) }}</p>
+<p class="text-gray-600 text-xl md:mt-4 text-center">{{ date('F j, Y', $page->date) }}</p>
 
 <div class="my-16"></div>
 
@@ -46,4 +46,52 @@
         @endif
     </div>
 </nav>
+
 @endsection
+@push('scripts')
+<script>
+function setFlickerAnimation() {
+  // get all elements that should be animated
+  const animatedElements = Array.from(
+    document.querySelectorAll(".post-title")
+  );
+
+  if (!animatedElements.length) {
+    return false;
+  }
+
+  // helper function to wrap random letters in <span>
+  const wrapRandomChars = (str, iterations = 1) => {
+    const chars = str.split("");
+    const excludedChars = [" ", "-", ",", ";", ":", "(", ")"];
+    const excludedIndexes = [];
+    let i = 0;
+
+    // run for the number of letters we want to wrap
+    while (i < iterations) {
+      const randIndex = Math.floor(Math.random() * chars.length);
+      const c = chars[randIndex];
+
+      // make sure we don't wrap a space or punctuation char
+      // or hit the same letter twice
+      if (!excludedIndexes.includes(randIndex) && !excludedChars.includes(c)) {
+        chars[randIndex] = `<span class="flicker">${c}</span>`;
+        excludedIndexes.push(randIndex);
+        i++;
+      }
+    }
+
+    return chars.join("");
+  };
+
+  // replace the plain text content in each element
+  animatedElements.forEach((el) => {
+    const text = el.textContent.trim();
+    const count = el.dataset.flickerChars ? parseInt(el.dataset.flickerChars) : undefined
+    el.innerHTML = wrapRandomChars(text, count);
+  });
+}
+
+setFlickerAnimation();
+</script>
+@endpush

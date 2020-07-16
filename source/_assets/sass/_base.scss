@@ -94,6 +94,11 @@ h1 {
 
 .post-title {
   @include neon-glow;
+}
+
+
+.flicker {
+  @include neon-glow;
   
   animation: flicker 3s linear forwards alternate infinite;
   
@@ -102,6 +107,14 @@ h1 {
     animation-direction: alternate-reverse !important;
   }
 }
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0s !important;
+    transition-duration: 0s !important;
+  }
+}
+
 h2 {
   @apply .font-bold;
   @apply .text-4xl;

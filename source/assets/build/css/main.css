@@ -822,14 +822,27 @@ h1 {
 .post-title {
   color: #fff !important;
   text-shadow: 0 0 0.033em #fff, 0 0 0.08em #fff, 0 0 0.1em #7a27ff, 0 0 0.2em #7a27ff, 0 0 0.3em #7a27ff, 0 0 1em #7a27ff, 0 0 1.5em #7a27ff;
+}
+
+.flicker {
+  color: #fff !important;
+  text-shadow: 0 0 0.033em #fff, 0 0 0.08em #fff, 0 0 0.1em #7a27ff, 0 0 0.2em #7a27ff, 0 0 0.3em #7a27ff, 0 0 1em #7a27ff, 0 0 1.5em #7a27ff;
   -webkit-animation: flicker 3s linear forwards alternate infinite;
           animation: flicker 3s linear forwards alternate infinite;
 }
 
-.post-title:nth-child(even) {
+.flicker:nth-child(even) {
   -webkit-animation-delay: 0.3s !important;
           animation-delay: 0.3s !important;
   animation-direction: alternate-reverse !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    -webkit-animation-duration: 0s !important;
+            animation-duration: 0s !important;
+    transition-duration: 0s !important;
+  }
 }
 
 h2 {
